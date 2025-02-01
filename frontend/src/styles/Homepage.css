@@ -1,0 +1,88 @@
+.homepage-container {
+    font-family: 'Arial', sans-serif;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    color: white;
+    padding: 60px 20px;
+    border-bottom: 4px solid #ddd;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-buttons {
+    margin-top: 15px;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .primary-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .secondary-button {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  .primary-button:hover,
+  .secondary-button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Features Section */
+  .features-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .features-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .features-list li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Illustration Section */
+  .illustration-section {
+    padding: 40px 20px;
+    background-color: #f1f3f5;
+  }
+  
+  .illustration-box {
+    background-color: #ffffff;
+    border: 2px solid #007bff;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 8px;
+  }

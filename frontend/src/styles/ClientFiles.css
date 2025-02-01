@@ -1,0 +1,110 @@
+/* .file-container {
+    position: flex;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  } */
+  
+  .file-header {
+    width: 250px;
+    margin-top: 1px;
+    display: flex; 
+    justify-content: center;     /* Horizontally centers the text */
+    align-items: center;               /* Enable flexbox */
+         /* Vertically centers the text */
+    text-align: center;   
+    font-size: 14px; 
+    /* font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px; */
+  }
+  
+  .tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* display: flex; */
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-left: 0; 
+  }
+  
+  .tabs2 {
+    display: flex;
+    flex-wrap: wrap; /* Allows the tabs to wrap to the next line if there's not enough space */
+    gap: 10px; /* Adds space between tabs */
+    justify-content: flex-start; 
+    align-items: flex-start;
+    /* justify-content: space-between; */
+    /* padding: 8px 0; */
+    border-bottom: 1px solid #ddd;
+  }
+
+  .tab {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+    word-wrap: break-word;     /* Break words if they are too long */
+    overflow: hidden;          /* Hide overflowed content */
+    white-space: normal;
+  }
+
+  .tab:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .tab.active {
+    background-color: #d9eaff;
+  }
+  
+  .file-details {
+    margin-top: 5px;
+    padding: 5px;
+    background: #eef4ff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;  /* Stack the content vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: flex-start; 
+  }
+  .file-details strong {
+    font-size: 14px; /* Slightly smaller size for the labels */
+    font-weight: 600; /* Medium weight for the labels */
+    color: #555; 
+    margin-right: 5px;
+  }
+  .file-item:last-child {
+    border-bottom: none;
+  }
+  
+  .file-name {
+    flex-grow: 1;
+    font-size: 12px;
+    color: #333;
+    font-weight: 500; /* Optional: makes the filename a bit bolder */
+    /* margin-right: 10px; */
+    text-align: left;
+  }
+  
+  .file-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  
+  .file-button:hover {
+    color: red;
+  }

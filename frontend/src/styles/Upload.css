@@ -1,0 +1,112 @@
+.upload-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f4f7fc;
+    min-height: 100vh;
+  }
+  
+  .upload-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; 
+  }
+  
+  input[type="file"] {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  input[type="file"]:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #a3a3a3;
+    cursor: not-allowed;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 15px;
+  }
+  
+  .message {
+    color: #28a745; /* Green for success message */
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  
+  .error-message {
+    color: #dc3545; /* Red for error messages */
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .upload-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    input[type="file"], button[type="submit"] {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    p {
+      font-size: 0.9rem;
+    }
+  }
+  .markdown-content {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    color: #333;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    text-align: left;
+  }
