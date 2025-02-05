@@ -40,7 +40,7 @@ from components.summarize_text import summarize_text, extract_text, check_requir
 from .faiss_index_manager import FAISSManager
 
 from dotenv import load_dotenv
-faiss_manager = FAISSManager()
+# faiss_manager = FAISSManager()
 load_dotenv()
 
 
@@ -326,8 +326,8 @@ def chat_with_bot(request, client_id):
 
     # print(settings.BASE_DIR)
     # os.path.join(settings.BASE_DIR,"/api/faiss_index")
-    # vectorstore = FAISS.load_local("c:/mnt/data", embedder, allow_dangerous_deserialization=True)
-    vectorstore = faiss_manager.vectorstore
+    vectorstore = FAISS.load_local("c:/mnt/data", embedder, allow_dangerous_deserialization=True)
+    # vectorstore = faiss_manager.vectorstore
     print("vectore store created")
     # vectorstore = FAISS.load_local("./faiss_index", embedder, allow_dangerous_deserialization=True)
     retriever = vectorstore.as_retriever(
