@@ -2,6 +2,7 @@ import os
 import pdfplumber
 import pytesseract
 from PIL import Image
+import easyocr
 import openai
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -16,19 +17,20 @@ from langchain_openai import ChatOpenAI
 load_dotenv()
 # OpenAI API Key
 
-def extract_text(file_path):
+def extract_pdf_text(file_path):
     """Extracts text from PDFs and images using OCR."""
-    if file_path.endswith(".pdf"):
-        with pdfplumber.open(file_path) as pdf:
-            text = "\n".join([page.extract_text() for page in pdf.pages if page.extract_text()])
-        return text
+    with pdfplumber.open(file_path) as pdf:
+        text = "\n".join([page.extract_text() for page in pdf.pages if page.extract_text()])
+    return text
 
-    elif file_path.endswith((".png", ".jpg", ".jpeg")):
-        print(file_path)
-        image = Image.open(file_path)
-        return pytesseract.image_to_string(image)  # OCR for images
+def extract_image_text(file_path):
+    reader = easyocr.Reader(['en'])  # 'en' is for English; you can add other languages if needed.
+    # Perform OCR to extract text
+    result = reader.readtext(file_path)
+    # Combine the text from the result
+    text = " ".join([item[1] for item in result])
+    return text  # OCR for images
     
-    return None
 
 def summarize_text(text):
     """Summarizes text using OpenAI's ChatGPT API. Also, tell what kind of
@@ -67,10 +69,12 @@ def check_requirements(summaries, requirements):
     template = f"""
     The following are requirements from lawyers:
     {requirements}.
+
     client uploaded their document for lawyers request.
     The given text is their document: "{summaries}"
     
-    Identify which requirements are not furfilled (missing client document).
+    Say that your upload is completed if summaries is similar to the lawyers' requirements.
+    If there is no similar file summaries, Identify which requirements are not furfilled (missing client document).
     
     
     """

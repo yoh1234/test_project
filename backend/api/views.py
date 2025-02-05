@@ -36,7 +36,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 # import extract_text, summarize_text from "../components/summarize_text.py"
-from components.summarize_text import summarize_text, extract_text, check_requirements
+from components.summarize_text import summarize_text, extract_pdf_text, extract_image_text, check_requirements
 
 from .faiss_index_manager import FAISSManager
 
@@ -256,7 +256,14 @@ class UploadFileView(APIView):
             # file_path = os.path.join(os.environ['BASE_DIR'], str(uploaded_file.file))
             file_path = uploaded_file.file.path
             print("file_path_done")
-            extracted_text = extract_text(file_path)
+            extracted_text = ""
+            if file_path.endswith(".pdf"):
+                extracted_text = extract_pdf_text(file_path)
+                
+            if extracted_text == "":
+                extracted_text = extract_image_text(file_path)
+                
+                
             print("extracted_text: ", extracted_text)
             
             # if extracted_text:
