@@ -24,6 +24,7 @@ def extract_text(file_path):
         return text
 
     elif file_path.endswith((".png", ".jpg", ".jpeg")):
+        print(file_path)
         image = Image.open(file_path)
         return pytesseract.image_to_string(image)  # OCR for images
     

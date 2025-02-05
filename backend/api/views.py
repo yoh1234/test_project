@@ -20,6 +20,7 @@ from django.contrib.auth import authenticate, login
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import user_passes_test
+import boto3
 
 import json
 import uuid
@@ -248,13 +249,15 @@ class UploadFileView(APIView):
         for file in files:
             print("start file")
             uploaded_file = UploadedFile.objects.create(client=upload_link.client, file=file)
-            uploaded_file.save()  # Save file to the database
+            uploaded_file.save()
+            
             print(os.path.join(settings.BASE_DIR, str(uploaded_file.file)))
             # file_path = os.path.join(settings.BASE_DIR, str(uploaded_file.file))
             # file_path = os.path.join(os.environ['BASE_DIR'], str(uploaded_file.file))
             file_path = uploaded_file.file.path
             print("file_path_done")
             extracted_text = extract_text(file_path)
+            print("extracted_text: ", extracted_text)
             
             # if extracted_text:
             print("text is successfully extracted")

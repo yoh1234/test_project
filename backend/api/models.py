@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now, timedelta
 import uuid
 
+def file_upload_path(instance, filename):
+    return f"uploads/{instance.client.id}/{filename}"
 
 class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='clients')
