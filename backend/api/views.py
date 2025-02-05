@@ -40,7 +40,7 @@ from components.summarize_text import summarize_text, extract_text, check_requir
 from .faiss_index_manager import FAISSManager
 
 from dotenv import load_dotenv
-
+faiss_manager = FAISSManager()
 load_dotenv()
 
 
@@ -319,27 +319,30 @@ def chat_with_bot(request, client_id):
     user_input = request.data.get('message')
     if not user_input:
         return Response({"error": "Message cannot be empty"}, status=400)
-
+    print(user_input)
     embedder = HuggingFaceEmbeddings(
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
     )
 
     # print(settings.BASE_DIR)
     # os.path.join(settings.BASE_DIR,"/api/faiss_index")
-    # vectorstore = FAISS.load_local("C:/Users/legal_research/backend/api/faiss_index", embedder, allow_dangerous_deserialization=True)
+    # vectorstore = FAISS.load_local("c:/mnt/data", embedder, allow_dangerous_deserialization=True)
+    vectorstore = faiss_manager.vectorstore
+    print("vectore store created")
     # vectorstore = FAISS.load_local("./faiss_index", embedder, allow_dangerous_deserialization=True)
-    # retriever = vectorstore.as_retriever(
-    #     search_kwargs={"k": 5},
-    # )
+    retriever = vectorstore.as_retriever(
+        search_kwargs={"k": 5},
+    )
     # print("vectorstore loaded")
     # Initialize the OpenAI chat model with LangChain
     # chat_model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
-    query_vector = embedder.encode(user_input)
-  # Replace with actual input data
-    results = faiss_manager.search(query_vector, k=3)
-    return JsonResponse({"results": results})
-    
+#     query_vector = embedder.encode(user_input)
+#     print(query_vector)
+#   # Replace with actual input data
+#     results = faiss_manager.search(query_vector, k=3)
+
+#     print(results)
     # Define the prompt template (you can adjust based on your requirements)
     prompt = PromptTemplate.from_template(
         """You are an legal research assistant for question-answering tasks. 
