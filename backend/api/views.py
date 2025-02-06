@@ -354,7 +354,8 @@ def chat_with_bot(request, client_id):
     uploaded_files = UploadedFile.objects.filter(id=client_id)
     # Combine all summaries into one large chunk of text
     summaries = " ".join(uploaded_file.summary_text for uploaded_file in uploaded_files)
-    print("finish")
+    print(summaries)
+
 #     print(results)
     # Define the prompt template (you can adjust based on your requirements)
     prompt = PromptTemplate.from_template(
@@ -366,7 +367,7 @@ def chat_with_bot(request, client_id):
     # You can asnwer based on your analysis, but you have to explain the reason based on the real legal case law I gave you. 
     # For example, if you mention Age Discrimination in Employment Act (ADEA) at the beginning, you have to find ADEA information from the context.
     # before writing plaintiff's claim, make blank gaps between paragraphs.
-    """You are a Legal Assistant AI designed to retrieve and summarize court opinions. Your task is to find similar cases, analyze the provided court opinion and extract the most crucial information. Follow these steps:
+    f"summariesof evidence: {summaries} " + """You are a Legal Assistant AI designed to retrieve and summarize court opinions. Your task is to find similar employment termination cases based on given context and question and evidence summary, analyze the provided court opinion and extract the most crucial information. Follow these steps:
     
     Identify the Case: Provide the case name, citation, court, and date of decision.
 
@@ -423,21 +424,23 @@ def chat_with_bot(request, client_id):
     
     #Context: 
     {context}
-
+    
     #Question:
     {question}
 
     #Answer:"""
     )
     
+    print("prompt ready")
     llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
-
+    print("llm ready")
     chain = (
-        {"context": retriever, "question": RunnablePassthrough()}
+        {"context": retriever,"question": RunnablePassthrough()}
         | prompt
         | llm
         | StrOutputParser()
     )
+    print("chain ready")
     # Prepare the prompt
     # chat_prompt = ChatPromptTemplate.from_messages([("user", template)])
 
