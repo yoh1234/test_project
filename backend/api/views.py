@@ -400,6 +400,8 @@ def chat_with_bot(request, client_id):
     Reasoning: [Summary of the court’s analysis]
 
     Significance: [Why the case matters]
+    
+    Note: You could add your brief opinions and analysis before and after this format.
 
     Example:
 
