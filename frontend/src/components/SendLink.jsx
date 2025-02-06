@@ -60,14 +60,14 @@ const SendLink = ({client}) => {
 
   return (
     <div>
-      <button className="button" onClick={openModal}>Send Email with a link</button>
+      <button className="button" onClick={openModal}>Send Intake Instructions Via Email</button>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className = "modal-content">
 
         <form onSubmit={handleSubmit}>
           <h3>Request evidence to {client.name} ({client.email})</h3>
           <div>
-            <label>Requirements:</label>
+            <label>Tell our AI what type of files you want the client to send you and what they should not send.</label>
             <textarea
               value={message}
               onChange={handleMessageChange}

@@ -25,7 +25,7 @@ function HomePage() {
           <button className="primary-btn">Book a Demo</button>
         </a>
         <Link to="/register">
-        <button className="secondary-btn">Request Waitlist Access</button>
+        <button className="secondary-btn">Request Access</button>
         </Link>
       </div>
     </header>

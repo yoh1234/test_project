@@ -48,7 +48,7 @@ const Chatbot = ({ clientId }) => {
                     <textarea 
                     value={input} 
                     onChange={(e) => setInput(e.target.value)} 
-                    placeholder="Type your question..." 
+                    placeholder='Type your question... Ask our AI anything related to case law or about the client.' 
                     rows={3}
                     onKeyDown={(e) => {
                         if (e.key === "Enter" && !e.shiftKey) { // Send on Enter, allow Shift+Enter for new lines
