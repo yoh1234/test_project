@@ -8,42 +8,25 @@ const Chatbot = ({ clientId }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
 
-    useEffect(() => {
+    useEffect(() => {  
         
-        // fetchChatHistory();
-        // const savedMessages = localStorage.getItem("chatMessages");
-        // if (savedMessages) {
-        //     setMessages(JSON.parse(savedMessages));
-        //     console.log(messages[0])
-        // }
+        setMessages([]);
+        setInput("");
+        
+        api.get(`/api/chat-history/${clientId}/`)
+            .then(response => response.json())
+            .then(data => setMessages(data));
+    }, [clientId]);
 
-    }, []);
-
-    const fetchChatHistory = async () => {
-        try {
-            const response = await api.get(`/api/chat-history/${clientId}/`);
-            setMessages(response.data);
-            localStorage.setItem("chatMessages", JSON.stringify(response.data));
-        } catch (error) {
-            console.error("Error fetching chat history:", error);
-        }
-    };
-
+    
     const sendMessage = async () => {
         if (!input.trim()) return;
 
         const userMessage = { role: "user", content: input };
-        setMessages(prev => [...prev, userMessage]);
-
-        try {
-            const response = await api.post(`/api/chat/${clientId}/`, { message: input });
-            const botMessage = { role: "bot", content: response.data.bot_response };
-            setMessages(prev => [...prev, botMessage]);
-            localStorage.setItem("chatMessages", JSON.stringify([...messages, userMessage, botMessage]));
-        } catch (error) {
-            console.error("Error sending message", error);
-        }
-
+        setMessages([...messages, userMessage]);
+        const response = await api.post(`/api/chat/${clientId}/`, { message: input });
+        const botMessage = { role: "bot", content: response.data.content };
+        setMessages([...messages, userMessage, botMessage]);
         setInput("");
     };
 
@@ -51,8 +34,8 @@ const Chatbot = ({ clientId }) => {
         <div className="chat-container">
             <div className="chatbot-area"> 
                 <div className="chat-messages">
-                    {messages.map((msg) => (
-                        <div key={msg.id} className={msg.role === "user" ? "user-msg" : "bot-msg"}>
+                    {messages.map((msg, index) => (
+                        <div key={index} className={msg.role === "user" ? "user-msg" : "bot-msg"}>
                             {/* {msg.userMessage}
                             {msg.bot_response} */}
                             <ReactMarkdown>{msg.content}</ReactMarkdown>

@@ -338,7 +338,6 @@ def chat_with_bot(request, client_id):
     # os.path.join(settings.BASE_DIR,"/api/faiss_index")
     vectorstore = FAISS.load_local("/mnt/data", embedder, allow_dangerous_deserialization=True)
     # vectorstore = faiss_manager.vectorstore
-    print("vectore store created")
     # vectorstore = FAISS.load_local("./faiss_index", embedder, allow_dangerous_deserialization=True)
     retriever = vectorstore.as_retriever(
         search_kwargs={"k": 5},
@@ -351,18 +350,23 @@ def chat_with_bot(request, client_id):
 #     print(query_vector)
 #   # Replace with actual input data
 #     results = faiss_manager.search(query_vector, k=3)
-
+    print("start")
+    uploaded_files = UploadedFile.objects.filter(id=client_id)
+    # Combine all summaries into one large chunk of text
+    summaries = " ".join(uploaded_file.summary_text for uploaded_file in uploaded_files)
+    print("finish")
 #     print(results)
     # Define the prompt template (you can adjust based on your requirements)
     prompt = PromptTemplate.from_template(
         """You are an legal research assistant for question-answering tasks. 
-    You use the following pieces of retrieved context to answer the legal question.
+    You use the following pieces of retrieved context and summary of evidence uploaded by client to answer the legal question.
     For simple problem, briefly answer their questions, however, you have to use given context and give them similar case example to answer.
     If user ask details of similar case law, use bullet point to elaborate Plaintiff'claim, Defendants's Response, Critical Argument, Court's Decision, and Conclusion.
     You can asnwer based on your analysis, but you have to explain the reason based on the real legal case law I gave you. 
     For example, if you mention Age Discrimination in Employment Act (ADEA) at the beginning, you have to find ADEA information from the context.
     before writing plaintiff's claim, make blank gaps between paragraphs.
 
+    
     #Context: 
     {context}
 
@@ -399,7 +403,14 @@ def chat_with_bot(request, client_id):
 
     # bot_response = response['choices'][0]['message']['content']
 
-    chat_message = ChatMessage.objects.create(user = user, client = client, user_message=user_input, bot_response=bot_response)
+    # chat_message = ChatMessage.objects.create(user = user, client = client, user_message=user_input, bot_response=bot_response)
+    chat_message = ChatMessage.objects.create(user = user, 
+                                              client = client, 
+                                              user_message=user_input, 
+                                              bot_response=bot_response,
+                                              role = 'bot',
+                                              content = bot_response
+                                              )
     serializer = ChatMessageSerializer(chat_message)
 
     return Response(serializer.data)
@@ -407,17 +418,22 @@ def chat_with_bot(request, client_id):
 @permission_classes([IsAuthenticated])
 def get_chat_messages(request, client_id):
     """Retrieve chat history for a specific client."""
-    user = request.user
     chat_messages = ChatMessage.objects.filter(client_id=client_id).order_by("timestamp")
-    print(chat_messages)
-    data = [
-        {
-            "id": msg.id,
-            "user_message": msg.user_message,
-            "bot_response": msg.bot_response,
-            "timestamp": msg.timestamp.strftime("%Y-%m-%d %H:%M:%S")
-        }
-        for msg in chat_messages
-    ]
+    return JsonResponse(list(chat_messages.values("role", "content")), safe = False)
+# @permission_classes([IsAuthenticated])
+# def get_chat_messages(request, client_id):
+#     """Retrieve chat history for a specific client."""
+#     user = request.user
+#     chat_messages = ChatMessage.objects.filter(client_id=client_id).order_by("timestamp")
+#     print(chat_messages)
+#     data = [
+#         {
+#             "id": msg.id,
+#             "user_message": msg.user_message,
+#             "bot_response": msg.bot_response,
+#             "timestamp": msg.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+#         }
+#         for msg in chat_messages
+#     ]
 
-    return JsonResponse(data, safe=False)
+#     return JsonResponse(data, safe=False)

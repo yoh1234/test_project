@@ -37,6 +37,8 @@ class UploadedFile(models.Model):
 class ChatMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chat_user')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='chat_client')
+    role = models.CharField(default = "") # "user" or "bot" 
     user_message = models.TextField(default="")
     bot_response = models.TextField(default="")
+    content = models.TextField(default = "")
     timestamp = models.DateTimeField(auto_now_add=True)

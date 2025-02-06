@@ -40,4 +40,4 @@ class UploadedFileSerializer(serializers.ModelSerializer):
 class ChatMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatMessage
-        fields = ['id', 'user_message', 'bot_response', 'timestamp']
+        fields = ['id', 'user_message', 'bot_response', 'role', 'content', 'timestamp']
