@@ -21,11 +21,20 @@ const Header = () => {
       <span className="logo" onClick={() => navigate("/")}>Bruce</span>
       <nav>
         {isAuthenticated ? (
-          <button className="nav-btn" onClick={handleSignOut}>Sign Out</button>
-        ) : (
+          <div>
+            <Link to="/dashboard">
+              <button className="nav-btn">Dashboard</button>
+            </Link>
+            <button className="nav-btn" onClick={handleSignOut}>Sign Out</button>
+          </div>) : (
           <>
-            <Link to="/login" className="nav-btn">Login</Link>
-            <Link to="/register" className="nav-btn">Sign Up</Link>
+            {/* <Link to="/login" className="nav-btn">Login</Link> */}
+            <Link to="/login">
+              <button className="nav-btn">Login</button>
+            </Link>
+            <a href="https://calendly.com/onwardjusticemeeting/meet-daniel-1" target="_blank" rel="noopener noreferrer">
+              <button className="nav-btn">Book a Demo</button>
+            </a>
           </>
         )}
       </nav>

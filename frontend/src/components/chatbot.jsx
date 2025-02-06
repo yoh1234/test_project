@@ -9,7 +9,7 @@ const Chatbot = ({ clientId }) => {
     const [input, setInput] = useState("");
 
     useEffect(() => {  
-        
+
         setMessages([]);
         setInput("");
         
@@ -50,6 +50,12 @@ const Chatbot = ({ clientId }) => {
                     onChange={(e) => setInput(e.target.value)} 
                     placeholder="Type your question..." 
                     rows={3}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) { // Send on Enter, allow Shift+Enter for new lines
+                            e.preventDefault(); // Prevents newline
+                            sendMessage();
+                        }
+                    }}
                     />
                     <button onClick={sendMessage}>Enter</button>
                 </div>

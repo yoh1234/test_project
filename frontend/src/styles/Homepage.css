@@ -3,22 +3,34 @@
   text-align: center;
   color: #fff;
   background-color: #0a0028;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .hero-section {
-  background: linear-gradient(135deg, #1b1464, #220a84);
+  /* background: linear-gradient(135deg, #ededef, #6948ee); */
+  background-color: white;
   padding: 60px 20px;
 }
+.rounded-badge {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  color: #333;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+}
 
-.hero-title {
+.hero-title p{
   font-size: 2.5rem;
   margin-bottom: 10px;
+  color: #0a0028;
 }
 
 .hero-description {
   font-size: 1.2rem;
   margin-bottom: 30px;
+  color: #0a0028;
 }
 
 .button-container {
@@ -26,9 +38,24 @@
   justify-content: center;
   gap: 15px;
 }
-
+.assistant-section{
+  padding-bottom:30px;
+}
+.assistant-section h2{
+  padding-top:20px;
+  color: white; 
+}
+.assistant-section p{
+  color: white;
+}
+.footer-section h3{
+  color: white;
+}
+.footer-section p {
+  color: white;
+}
 .primary-btn, .secondary-btn {
-  background-color: #007bff;
+  background-color: #3f76ad;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -37,7 +64,10 @@
 }
 
 .secondary-btn {
-  background-color: #6610f2;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+
 }
 
 .footer-section {
@@ -53,6 +83,30 @@
 
 .contact-info, .social-links {
   max-width: 300px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  height: 30vh;
+  padding-bottom: 20px; /* Full height of the viewport */
+}
+.hero-section-2{
+  background: rgba(15, 0, 40, 0.9); /* Dark purple with slight transparency */
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  justify-content: center; 
+  width: 600px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-section-2 h1{
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
 }
 /* .homepage-container {
     font-family: 'Arial', sans-serif;

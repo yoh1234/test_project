@@ -1,34 +1,49 @@
 import React from "react";
 import "../styles/Homepage.css";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
     <div className="homepage-container">
     {/* Hero Section */}
     <header className="hero-section">
-      <span className="logo" onClick={() => navigate("/")}>
-        Bruce
-      </span>
+
+      <div className="rounded-badge">
+        Currently Taking Select Firms and Attorneys
+    </div>
       <h1 className="hero-title">
-        Ask Bruce. Take more cases and supercharge your existing team with an AI Legal Assistant.
+        <p>
+        Ask Bruce.<br />Take more cases and supercharge your<br />existing team with a<br />AI Legal Assistant.
+        </p>
       </h1>
       <p className="hero-description">
-        Our AI Agent will perform routine tasks during the intake process for potential and current clients. 
-        This saves you time and money. We integrate with Clio, Outlook, and other tools to meet you where you are.
+        Our AI Agent will perform routine tasks during the intake process <br />for potential and current clients that you
+        or your staff normally <br /> conduct. This saves you time and money. We integrate with Clio, <br />Outlook, and other tools and meet you where you are.
       </p>
       <div className="button-container">
-        <button className="primary-btn">Book a Demo</button>
+        <a href="https://calendly.com/onwardjusticemeeting/meet-daniel-1" target="_blank" rel="noopener noreferrer">
+          <button className="primary-btn">Book a Demo</button>
+        </a>
+        <Link to="/register">
         <button className="secondary-btn">Request Waitlist Access</button>
+        </Link>
       </div>
     </header>
 
     {/* Assistant Features Section */}
     <section className="assistant-section">
-      <h2>A 24/7 assistant that conducts all your most tiresome tasks</h2>
-      <p>Check out our amazing features and experience the power of Bruce for yourself.</p>
-      <button className="primary-btn">Book a Demo</button>
+      <h2>A 24/7 assistant that <br />conducts all your  <br />most tiresome tasks</h2>
+      <p>Check out our amazing features and experience the <br />power of Bruce for yourself.</p>
+      
     </section>
-
+    <div className="wrapper">
+    <section className="hero-section-2">
+        <h1>Game changing analytics, <br /> customer insights and  <br /> workflow.</h1>
+        <a href="https://calendly.com/onwardjusticemeeting/meet-daniel-1" target="_blank" rel="noopener noreferrer">
+        <button className="primary-btn">Book a Demo</button>
+        </a>
+    </section>
+    </div>
     {/* Footer */}
     <footer className="footer-section">
       <div className="footer-content">

@@ -6,16 +6,17 @@ body {
   }
   
   .header {
+    font-family: 'Georgia', serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #003366;
+    background-color: #0a0028;
     color: white;
   }
   
   .logo {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;  /* Changes cursor to a pointer (hand) */
     user-select: none; /* Prevents text selection */
@@ -36,6 +37,7 @@ body {
   .nav-btn:hover {
     background-color: lightgray;
   }
+
   
   .main-content {
     padding: 40px;

@@ -26,14 +26,14 @@ function Form({ route, method }) {
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate("/dashboard")
             } else {
-                alert("Your account has been created")
+                alert("Your account has been created. Please wait until your access has been approved. Please contact us if you have any questions.")
                 navigate("/login")
             }
         } catch (error) {
             if (method === "Register" && error.response && error.response.status === 400){
                 setMessage("This email is already registered.");
             } else if (method === "login") {
-                setMessage("We are setting up your account. We will infrom you of any changes.");
+                setMessage("Something went wrong. Please try again. We may be in the process of setting up your account if you recently created it.");
             } else {
                 setMessage("Something went wrong. Please try again.");
             }
