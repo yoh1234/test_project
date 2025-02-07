@@ -50,7 +50,6 @@ function Form({ route, method }) {
             <label>Enter your email:</label>
             <input
                 className="form-input"
-                pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$"
                 type="email"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
